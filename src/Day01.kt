@@ -1,15 +1,38 @@
 fun main() {
+    fun fillMap(caloryText: List<String>): MutableMap<Int, MutableList<Int>> {
+        val elfMap: MutableMap<Int, MutableList<Int>> = mutableMapOf()
+        var currentElfIndex = 1
+
+        caloryText.forEach {
+            if (it.isBlank()) {
+                currentElfIndex += 1
+            }
+            if (it.isNotBlank()) {
+                if (!elfMap.containsKey(currentElfIndex)) {
+                    elfMap[currentElfIndex] = mutableListOf(it.toInt())
+                } else {
+                    elfMap[currentElfIndex]?.add(it.toInt())
+                }
+            }
+        }
+
+        return elfMap
+    }
+
     fun part1(input: List<String>): Int {
-        return input.size
+        val sortedMap = fillMap(input).map { it.key to it.value.sum() }.sortedByDescending { it.second }
+        return sortedMap.first().second
     }
 
     fun part2(input: List<String>): Int {
-        return input.size
+        val filledMap = fillMap(input).map { it.key to it.value.sum() }.sortedByDescending { it.second }
+        return filledMap.subList(0, 3).sumOf { it.second }
     }
 
     // test if implementation meets criteria from the description, like:
     val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
+    check(part1(testInput) == 24000)
+    check(part2(testInput) == 45000)
 
     val input = readInput("Day01")
     println(part1(input))
