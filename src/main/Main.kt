@@ -1,15 +1,12 @@
-package main
-
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.Headers
 import com.github.kittinunf.result.Result
-import resourceAsString
 import java.io.File
 
 
 fun main(args: Array<String>) {
     val year = 2022
-    val day = 11
+    val day = 2
 
     readInputFileFromInternet(year, day)
     createDayClassFile(year, day)
@@ -26,9 +23,8 @@ fun readInputFileFromInternet(year: Int, day: Int) {
     }
 
     val sessionCookie = resourceAsString("session_cookie.txt")
-//    val sessionCookie = File("src", "session_cookie.txt").readText()//resourceAsString("src/main/session_cookie.txt")
     Fuel.get("https://adventofcode.com/$year/day/$day/input")
-        .header(Headers.USER_AGENT to "github.com/Clausr/advent_of_code/tree/main.main/src/main.main.kt by clausr")
+        .header(Headers.USER_AGENT to "github.com/Clausr/advent_of_code/tree/main/src/main.kt by clausr")
         .header(Headers.COOKIE to "session=$sessionCookie")
         .responseString { _, response, result ->
             when (result) {
@@ -66,10 +62,9 @@ fun createDayClassFile(year: Int, day: Int) {
 
 fun getTestCaseContent(year: Int, day: Int): String {
     val doubleTriple = "\"\"\"\"\"\""
-    return """package test.aoc$year
-import aoc${year}.Day${day}
-import org.junit.Assert.assertEquals
-import org.junit.Test
+    return """package aoc$year
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import resourceAsList
 class Day${day}Test {
     private val exampleInput = $doubleTriple.trimIndent().split("\n")
