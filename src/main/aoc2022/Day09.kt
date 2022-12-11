@@ -51,7 +51,7 @@ private fun findUniqueTailLocations(movements: List<Movement>, children: Int = 1
 
 
 fun main() {
-    val input = readInput("Day09")
+    val input = resourceAsList("Day09.txt")
     println(part1(input))
     println(part2(input))
 }

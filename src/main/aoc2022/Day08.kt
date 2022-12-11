@@ -132,7 +132,7 @@ private fun findScenicHighScore(): Int {
 }
 
 fun main() {
-    val input = readInput("Day08")
+    val input = resourceAsList("Day08")
 
     grid = input.map { it.map { it.digitToInt() } }
 
@@ -145,7 +145,7 @@ fun main() {
     val testAnswer2 = 8
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day08_test")
+    val testInput = resourceAsList("Day08_test.txt")
 
     check(part1(testInput) == testAnswer1)
     check(part2() == testAnswer2)

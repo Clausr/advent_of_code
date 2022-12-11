@@ -1,12 +1,34 @@
-import kotlin.math.abs
+package aoc2022
+
+import resourceAsList
+
+class Day10(private val input: List<String>) {
+    fun solvePart1(): Int {
+        val xMap = parseInstructions(input).toCycleMap()
+
+        //the cycle number multiplied by the value of the X register
+        var signalStrength = 0
+        for (cycle in 20..220 step 40) {
+            val signal = xMap[cycle - 1] ?: 0
+            signalStrength += cycle * signal
+        }
+
+        return signalStrength
+    }
+
+    fun solvePart2(): Int {
+        return -1
+    }
+}
 
 val instructions by lazy {
-//    val input = readInput("Day10_test")
-    val input = readInput("Day10")
+//    val testInput = readInput("Day10_test")
+    val input = resourceAsList("src/main/aoc2022/Day10.txt")
     parseInstructions(input)
 }
 
 private fun List<Instruction>.toCycleMap(): Map<Int, Int> {
+//    val xMap = mutableMapOf<Int, Int>()
     val xMap = mutableMapOf(Pair(0, 1))
     forEach { instruction ->
         for (cycle in 1..instruction.cycles) {
