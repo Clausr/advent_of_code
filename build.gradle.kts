@@ -7,19 +7,25 @@ repositories {
 }
 
 tasks {
+//    sourceSets {
+//        main {
+//            java.srcDirs("src")
+//        }
+//    }
+
     wrapper {
         gradleVersion = "7.6"
     }
 }
 
 sourceSets {
-    main {
+    val main by getting {
         java {
             srcDirs("src/main")
             srcDirs("src/main/resources")
         }
     }
-    test {
+    val test by getting {
         java {
             srcDir("src/test/aoc2022")
             srcDirs("src/test/resources")
