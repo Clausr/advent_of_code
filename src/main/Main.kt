@@ -6,7 +6,7 @@ import java.io.File
 
 fun main(args: Array<String>) {
     val year = 2022
-    val day = 12
+    val day = 13
 
     readInputFileFromInternet(year, day)
     createDayClassFile(year, day)
