@@ -6,13 +6,15 @@ class Day10(input: List<String>) {
 
     fun solvePart1(): String {
         val message = Sky(lights).getMessageWithLeastArea()
-        println(message)
+        println(message.second)
 
-        return message
+        return message.first
     }
 
-    fun solvePart2(): String {
-        return ""
+    fun solvePart2(): Int {
+        val message = Sky(lights).getMessageWithLeastArea()
+
+        return message.second
     }
 
     data class Light(var x: Int, var y: Int, val velocityX: Int, val velocityY: Int) {
@@ -50,12 +52,14 @@ class Day10(input: List<String>) {
          * This might be naïve, but it seems to work with this task.
          * It would've failed if the stars all started from the center of the sky
          */
-        fun getMessageWithLeastArea(): String {
+        fun getMessageWithLeastArea(): Pair<String, Int> {
             var lastArea = Long.MAX_VALUE
             var currentArea = calculateCurrentArea()
+            var seconds = 0
 
             while (lastArea > currentArea) {
                 moveLights()
+                seconds += 1
 
                 lastArea = currentArea
                 currentArea = calculateCurrentArea()
@@ -65,7 +69,7 @@ class Day10(input: List<String>) {
             // so that means we're 1 second too far ahead... Luckily we can just go back in time.
             moveLights(direction = Direction.Backward)
 
-            return this.toString()
+            return this.toString() to seconds - 1
         }
 
         private fun moveLights(direction: Direction = Direction.Forward) = lights.forEach { it.move(direction) }
@@ -75,7 +79,8 @@ class Day10(input: List<String>) {
         private val rangeX
             get() = IntRange(lights.minOf { it.x }, lights.maxOf { it.x })
 
-        private fun calculateCurrentArea(): Long = (rangeX.last - rangeX.first).toLong() * (rangeY.last - rangeY.first).toLong()
+        private fun calculateCurrentArea(): Long =
+            (rangeX.last - rangeX.first).toLong() * (rangeY.last - rangeY.first).toLong()
 
         override fun toString(): String {
             val lightSet = lights.map { it.x to it.y }.toSet()

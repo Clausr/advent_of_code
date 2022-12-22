@@ -63,11 +63,11 @@ position=<-3,  6> velocity=< 2, -1>""".trimIndent().split("\n")
     @Test
     fun testPartTwoExample1() {
         val day10 = Day10(exampleInput)
-        assertEquals(0, day10.solvePart2())
+        assertEquals(3, day10.solvePart2())
     }
     @Test
     fun partTwoRealInput() {
         val day10 = Day10(resourceAsList("aoc2018/day10.txt"))
-        assertEquals(0, day10.solvePart2())
+        assertEquals(10612, day10.solvePart2())
     }
 }
