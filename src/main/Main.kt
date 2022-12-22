@@ -8,7 +8,7 @@ fun main(args: Array<String>) {
     val year = 2018
     val day = 10
 
-    //readInputFileFromInternet(year, day)
+    readInputFileFromInternet(year, day)
     createDayClassFile(year, day)
     createTestFile(year, day)
 
