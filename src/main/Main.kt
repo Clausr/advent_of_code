@@ -5,17 +5,17 @@ import java.io.File
 
 
 fun main(args: Array<String>) {
-    val year = 2022
-    val day = 14
+    val year = 2018
+    val day = 10
 
-    readInputFileFromInternet(year, day)
+    //readInputFileFromInternet(year, day)
     createDayClassFile(year, day)
     createTestFile(year, day)
 
 }
 
 fun readInputFileFromInternet(year: Int, day: Int) {
-    val path = "src/test/resources/$year/day$day.txt"
+    val path = "src/test/resources/aoc$year/day$day.txt"
     val file = File(path)
     if (file.exists()) {
         println("Input file download aborted, file already exists")
@@ -75,7 +75,7 @@ class Day${day}Test {
     }
     @Test
     fun partOneRealInput() {
-        val day$day = Day$day(resourceAsList("${year}/day${day}.txt"))
+        val day$day = Day$day(resourceAsList("aoc${year}/day${day}.txt"))
         assertEquals(0, day$day.solvePart1())
     }
     @Test
@@ -85,7 +85,7 @@ class Day${day}Test {
     }
     @Test
     fun partTwoRealInput() {
-        val day$day = Day$day(resourceAsList("${year}/day${day}.txt"))
+        val day$day = Day$day(resourceAsList("aoc${year}/day${day}.txt"))
         assertEquals(0, day$day.solvePart2())
     }
 }""".replace("\n", System.getProperty("line.separator"))

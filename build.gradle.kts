@@ -1,7 +1,6 @@
 plugins {
     kotlin("jvm") version "1.7.22"
     kotlin("plugin.serialization") version "1.7.20"
-
 }
 
 repositories {
@@ -9,12 +8,6 @@ repositories {
 }
 
 tasks {
-//    sourceSets {
-//        main {
-//            java.srcDirs("src")
-//        }
-//    }
-
     wrapper {
         gradleVersion = "7.6"
     }
@@ -30,6 +23,7 @@ sourceSets {
     val test by getting {
         java {
             srcDir("src/test/aoc2022")
+            srcDir("src/test/aoc2018")
             srcDirs("src/test/resources")
         }
     }
@@ -44,7 +38,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 
     implementation("com.github.kittinunf.fuel:fuel:2.3.1") // For downloading input file
-    implementation("com.github.kittinunf.result:result:5.2.1") // Needed for Fuel
+    implementation("com.github.kittinunf.result:result:5.3.0") // Needed for Fuel
 }
 
 tasks.test {
