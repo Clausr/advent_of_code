@@ -2,11 +2,13 @@ import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.Headers
 import com.github.kittinunf.result.Result
 import java.io.File
+import java.nio.file.Files
+import java.nio.file.Paths
 
 
 fun main(args: Array<String>) {
-    val year = 2018
-    val day = 10
+    val year = 2022
+    val day = 11
 
     readInputFileFromInternet(year, day)
     createDayClassFile(year, day)
@@ -15,11 +17,18 @@ fun main(args: Array<String>) {
 }
 
 fun readInputFileFromInternet(year: Int, day: Int) {
-    val path = "src/test/resources/aoc$year/day$day.txt"
-    val file = File(path)
-    if (file.exists()) {
-        println("Input file download aborted, file already exists")
-        return
+    val fileName = "day$day.txt"
+    val directory = "src/test/resources/aoc$year"
+    val path = "$directory/$fileName"
+
+    // Create directory
+    Files.createDirectories(Paths.get(directory))
+
+    val file = File(path).also {
+        if (it.exists()) {
+            println("Input file download aborted, file already exists")
+            return
+        }
     }
 
     val sessionCookie = resourceAsString("session_cookie.txt")
@@ -36,7 +45,7 @@ fun readInputFileFromInternet(year: Int, day: Int) {
                     // Make sure to use same line separators as the system
                     result.value
                         .replace("\n", System.getProperty("line.separator"))
-                        .also { File(path).writeText(it) }
+                        .also { file.writeText(it) }
                     println("$path downloaded successfully")
                 }
             }
@@ -45,7 +54,12 @@ fun readInputFileFromInternet(year: Int, day: Int) {
 }
 
 fun createTestFile(year: Int, day: Int) {
-    val path = "src/test/aoc$year/Day${day}Test.kt"
+    val fileName = "Day${day}Test.kt"
+    val directory = "src/test/aoc$year"
+
+    Files.createDirectories(Paths.get(directory))
+
+    val path = "$directory/$fileName"
     File(path)
         .takeIf { !it.exists() }
         ?.writeText(getTestCaseContent(year, day))
@@ -53,7 +67,11 @@ fun createTestFile(year: Int, day: Int) {
 }
 
 fun createDayClassFile(year: Int, day: Int) {
-    val path = "src/main/aoc$year/Day${day}.kt"
+    val directory = "src/main/aoc$year"
+    val fileName = "Day${day}.kt"
+    Files.createDirectories(Paths.get(directory))
+
+    val path = "$directory/$fileName"
     File(path)
         .takeIf { !it.exists() }
         ?.writeText(getDayClassContent(year, day))

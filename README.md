@@ -1,3 +1,9 @@
+# Session cookie
+Since we shouldn't commit the inputs to Github, it's easy to pull your own input by using the Main function;
+Create the file `src/main/resources/session_cookie.txt` with your session cookie from one of the inputs on AOC. 
+
+Use the Main function to get the right year/day.
+
 # advent_of_code
 
 Welcome to the Advent of Code[^aoc] Kotlin project created by [clausr][github] using the [Advent of Code Kotlin Template][template] delivered by JetBrains.
