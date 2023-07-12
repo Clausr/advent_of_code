@@ -162,7 +162,12 @@ class Day10Test {
 
     @Test
     fun partOneRealInput() {
-        val day10 = Day10(resourceAsList("2022/day10.txt"))
+        val day10 = Day10(resourceAsList("aoc2022/day10.txt"))
         assertEquals(15360, day10.solvePart1())
+    }
+
+    @Test
+    fun partTwoRealInput() {
+        Day10(resourceAsList("aoc2022/day10.txt")).solvePart2()
     }
 }
