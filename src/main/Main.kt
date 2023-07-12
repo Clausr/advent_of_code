@@ -5,19 +5,19 @@ import java.io.File
 import java.nio.file.Files
 import java.nio.file.Paths
 
-
 fun main(args: Array<String>) {
     val year = 2022
-    val day = 11
+    val day = 4
 
     readInputFileFromInternet(year, day)
     createDayClassFile(year, day)
     createTestFile(year, day)
-
 }
 
+fun Int.padWithStartingZero(): String = toString().padStart(2, '0')
+
 fun readInputFileFromInternet(year: Int, day: Int) {
-    val fileName = "day$day.txt"
+    val fileName = "day${day.padWithStartingZero()}.txt"
     val directory = "src/test/resources/aoc$year"
     val path = "$directory/$fileName"
 
@@ -34,7 +34,7 @@ fun readInputFileFromInternet(year: Int, day: Int) {
     val sessionCookie = resourceAsString("session_cookie.txt")
     Fuel.get("https://adventofcode.com/$year/day/$day/input")
         .header(Headers.USER_AGENT to "github.com/Clausr/advent_of_code/tree/main/src/main.kt by clausr")
-        .header(Headers.COOKIE to "session=$sessionCookie")
+        .header(Headers.COOKIE to "session=${sessionCookie.trimIndent()}")
         .responseString { _, response, result ->
             when (result) {
                 is Result.Failure -> {
@@ -54,7 +54,7 @@ fun readInputFileFromInternet(year: Int, day: Int) {
 }
 
 fun createTestFile(year: Int, day: Int) {
-    val fileName = "Day${day}Test.kt"
+    val fileName = "Day${day.padWithStartingZero()}Test.kt"
     val directory = "src/test/aoc$year"
 
     Files.createDirectories(Paths.get(directory))
@@ -68,7 +68,7 @@ fun createTestFile(year: Int, day: Int) {
 
 fun createDayClassFile(year: Int, day: Int) {
     val directory = "src/main/aoc$year"
-    val fileName = "Day${day}.kt"
+    val fileName = "Day${day.padWithStartingZero()}.kt"
     Files.createDirectories(Paths.get(directory))
 
     val path = "$directory/$fileName"
@@ -80,30 +80,31 @@ fun createDayClassFile(year: Int, day: Int) {
 
 fun getTestCaseContent(year: Int, day: Int): String {
     val doubleTriple = "\"\"\"\"\"\""
+    val dayPadded = day.padWithStartingZero()
     return """package aoc$year
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import resourceAsList
-class Day${day}Test {
+class Day${dayPadded}Test {
     private val exampleInput = $doubleTriple.trimIndent().split("\n")
     @Test
     fun testPartOneExample1() {
-        val day$day = Day$day(exampleInput)
+        val day$day = Day$dayPadded(exampleInput)
         assertEquals(0, day$day.solvePart1())
     }
     @Test
     fun partOneRealInput() {
-        val day$day = Day$day(resourceAsList("aoc${year}/day${day}.txt"))
+        val day$day = Day$dayPadded(resourceAsList("aoc${year}/day${dayPadded}.txt"))
         assertEquals(0, day$day.solvePart1())
     }
     @Test
     fun testPartTwoExample1() {
-        val day$day = Day$day(exampleInput)
+        val day$day = Day$dayPadded(exampleInput)
         assertEquals(0, day$day.solvePart2())
     }
     @Test
     fun partTwoRealInput() {
-        val day$day = Day$day(resourceAsList("aoc${year}/day${day}.txt"))
+        val day$day = Day$dayPadded(resourceAsList("aoc${year}/day${dayPadded}.txt"))
         assertEquals(0, day$day.solvePart2())
     }
 }""".replace("\n", System.getProperty("line.separator"))
@@ -111,7 +112,7 @@ class Day${day}Test {
 
 fun getDayClassContent(year: Int, day: Int): String {
     return """package aoc${year}
-class Day${day}(input: List<String>) {
+class Day${day.padWithStartingZero()}(input: List<String>) {
     fun solvePart1(): Int {
         return -1
     }

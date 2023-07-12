@@ -3,3 +3,4 @@
 build
 src/**/*.txt
 src/main/resources/session_cookie.txt
+.DS_Store
