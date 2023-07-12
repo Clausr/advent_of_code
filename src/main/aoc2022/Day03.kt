@@ -1,6 +1,6 @@
 package aoc2022
 
-class Day3(input: List<String>) {
+class Day03(input: List<String>) {
     val doStuff = doStuff(input)
     val doStuff2 = doStuff2(input)
 

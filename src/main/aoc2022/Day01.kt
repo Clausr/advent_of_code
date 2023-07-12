@@ -1,6 +1,6 @@
 package aoc2022
 
-class Day1(input: List<String>) {
+class Day01(input: List<String>) {
     val caloryMap = fillMap(input)
 
     fun fillMap(caloryText: List<String>): MutableMap<Int, MutableList<Int>> {

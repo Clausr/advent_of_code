@@ -1,6 +1,6 @@
 package aoc2022
 
-class Day2(input: List<String>) {
+class Day02(input: List<String>) {
 
     val input = parseStrategyToList(input)
 
