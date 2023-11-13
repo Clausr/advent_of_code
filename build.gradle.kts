@@ -38,7 +38,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 
     implementation("com.github.kittinunf.fuel:fuel:2.3.1") // For downloading input file
-    implementation("com.github.kittinunf.result:result:5.4.0") // Needed for Fuel
+    implementation("com.github.kittinunf.result:result:5.5.0") // Needed for Fuel
 }
 
 tasks.test {
