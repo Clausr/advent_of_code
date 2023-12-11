@@ -22,6 +22,7 @@ sourceSets {
     }
     val test by getting {
         java {
+            srcDir("src/test/aoc2023")
             srcDir("src/test/aoc2022")
             srcDir("src/test/aoc2018")
             srcDirs("src/test/resources")
