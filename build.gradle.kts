@@ -22,6 +22,7 @@ sourceSets {
     }
     val test by getting {
         java {
+            srcDir("src/test/aoc2023")
             srcDir("src/test/aoc2022")
             srcDir("src/test/aoc2018")
             srcDirs("src/test/resources")
@@ -49,9 +50,9 @@ tasks.test {
 }
 
 // config JVM target to 1.8 for kotlin compilation tasks
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_19.majorVersion
-}
+//tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+//    kotlinOptions.jvmTarget = JavaVersion.VERSION_19.majorVersion
+//}
 
 // https://discuss.gradle.org/t/gradle-7-fail-for-duplicates-in-copy-specs-has-no-duplicates-in-project/39834/9
 project.tasks.named("processTestResources", Copy::class.java) {
