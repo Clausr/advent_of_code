@@ -1,4 +1,5 @@
 package aoc2018
+
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import resourceAsList

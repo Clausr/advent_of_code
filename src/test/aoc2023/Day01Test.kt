@@ -43,6 +43,6 @@ class Day01Test {
     @Test
     fun partTwoRealInput() {
         val day1 = Day01(resourceAsList("aoc2023/day01.txt"))
-        assertEquals(0, day1.solvePart2())
+        assertEquals(54980, day1.solvePart2())
     }
 }

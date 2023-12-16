@@ -9,34 +9,39 @@ class Day01(val input: List<String>) {
     }
 
     private fun addFirstAndLastDigit(line: String): Int {
-        val first = line.firstOrNull { it.isDigit() } //?.digitToInt() ?: 0
-        val last = line.findLast { it.isDigit() } //?.digitToInt() ?: 0
-        println("First digit: $first $last")
+        val first = line.first { it.isDigit() }
+        val last = line.last { it.isDigit() }
         return "$first$last".toInt()
     }
 
-    private fun convertToDigits(line: String): String {
-        val numberWords = listOf("one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
+    val words = mapOf(
+        "one" to 1,
+        "two" to 2,
+        "three" to 3,
+        "four" to 4,
+        "five" to 5,
+        "six" to 6,
+        "seven" to 7,
+        "eight" to 8,
+        "nine" to 9
+    )
 
-        var newLine = line
-
-
-
-        numberWords.forEachIndexed { i, numberWord ->
-            val indexOfMatch = line.indexOf(numberWord)
-            if (indexOfMatch != -1) {
-                println("Index of $numberWord $indexOfMatch")
-            }
-            newLine = newLine.replace(numberWord, (i + 1).toString())
+    private fun String.possibleWordsAt(startingAt: Int): List<String> =
+        (3..5).map { len ->
+            substring(startingAt, (startingAt + len).coerceAtMost(length))
         }
-        println("New line: $newLine")
-        return newLine
-    }
 
     fun solvePart2(): Int {
         val sum = input.sumOf {
-            val convertedString = convertToDigits(it)
-            addFirstAndLastDigit(convertedString)
+            addFirstAndLastDigit(
+                it.mapIndexedNotNull { index, c ->
+                    if (c.isDigit()) c
+                    else
+                        it.possibleWordsAt(index).firstNotNullOfOrNull {candidate ->
+                            words[candidate]
+                        }
+                }.joinToString()
+            )
         }
         return sum
     }
