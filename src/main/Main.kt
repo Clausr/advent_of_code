@@ -7,7 +7,7 @@ import java.nio.file.Paths
 
 fun main(args: Array<String>) {
     val year = 2023
-    val day = 1
+    val day = 2
 
     readInputFileFromInternet(year, day)
     createDayClassFile(year, day)
