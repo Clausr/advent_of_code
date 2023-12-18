@@ -32,6 +32,6 @@ Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green""".trimIndent().split("\n
     @Test
     fun partTwoRealInput() {
         val day2 = Day02(resourceAsList("aoc2023/day02.txt"))
-        assertEquals(0, day2.solvePart2())
+        assertEquals(60948, day2.solvePart2())
     }
 }
