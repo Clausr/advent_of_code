@@ -11,7 +11,6 @@ class Day03(val input: List<String>) {
 
             val charAtIndex = input.getOrNull(i)
             if (charAtIndex != null && charAtIndex.isDigit()) {
-                val startIndex = i
                 var number = charAtIndex.toString()
 
                 var j = i + 1
@@ -20,7 +19,7 @@ class Day03(val input: List<String>) {
                     j++
                 }
 
-                numbers.add(NumberThing(number.toInt(), range = startIndex..j))
+                numbers.add(NumberThing(number.toInt(), range = i..j))
             }
         }
 

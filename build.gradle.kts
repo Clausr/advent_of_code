@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "1.9.22"
-    kotlin("plugin.serialization") version "1.9.22"
+    kotlin("jvm") version "2.0.0"
+    kotlin("plugin.serialization") version "2.0.0"
 }
 
 repositories {
@@ -9,7 +9,7 @@ repositories {
 
 tasks {
     wrapper {
-        gradleVersion = "8.6"
+        gradleVersion = "8.7"
     }
 }
 
@@ -31,7 +31,7 @@ sourceSets {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.22")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.0.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
 
@@ -39,7 +39,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 
     implementation("com.github.kittinunf.fuel:fuel:2.3.1") // For downloading input file
-    implementation("com.github.kittinunf.result:result:5.5.0") // Needed for Fuel
+    implementation("com.github.kittinunf.result:result:5.6.0") // Needed for Fuel
 }
 
 tasks.test {

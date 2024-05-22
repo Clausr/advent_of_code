@@ -44,7 +44,7 @@ fun readInputFileFromInternet(year: Int, day: Int) {
                 is Result.Success -> {
                     // Make sure to use same line separators as the system
                     result.value
-                        .replace("\n", System.getProperty("line.separator"))
+                        .replace("\n", System.lineSeparator())
                         .also { file.writeText(it) }
                     println("$path downloaded successfully")
                 }
@@ -107,7 +107,7 @@ class Day${dayPadded}Test {
         val day$day = Day$dayPadded(resourceAsList("aoc${year}/day${dayPadded}.txt"))
         assertEquals(0, day$day.solvePart2())
     }
-}""".replace("\n", System.getProperty("line.separator"))
+}""".replace("\n", System.lineSeparator())
 }
 
 fun getDayClassContent(year: Int, day: Int): String {
@@ -119,5 +119,5 @@ class Day${day.padWithStartingZero()}(input: List<String>) {
     fun solvePart2(): Int {
         return -1
     }
-}""".replace("\n", System.getProperty("line.separator"))
+}""".replace("\n", System.lineSeparator())
 }
