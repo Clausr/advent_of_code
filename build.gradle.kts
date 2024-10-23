@@ -9,7 +9,7 @@ repositories {
 
 tasks {
     wrapper {
-        gradleVersion = "8.7"
+        gradleVersion = "8.10.2"
     }
 }
 
