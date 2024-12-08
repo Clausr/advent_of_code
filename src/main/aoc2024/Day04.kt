@@ -3,7 +3,6 @@ package aoc2024
 class Day04(private val input: List<String>) {
 
     private fun rotateGrid(input: List<String>): List<String> {
-        println("Rotate grid: ${input.first()}")
         val rotatedMap = mutableMapOf<Int, String>()
         input.forEach { y ->
             y.reversed().forEachIndexed { xIndex, x ->
@@ -74,7 +73,54 @@ class Day04(private val input: List<String>) {
         return sum
     }
 
+    private fun findMas(input: List<String>): Int {
+
+        var sum = 0
+        input.mapIndexed { yIndex, xLine ->
+            if (yIndex + 3 <= input.size) {
+                xLine.indices.mapNotNull { xIndex ->
+                    if (xIndex + 3 <= xLine.length) {
+                        var tempY = yIndex
+                        var tempX = xIndex
+                        var temp = ""
+                        for (x in xIndex..xIndex + 2) {
+                            temp += input[tempY][x]
+                            tempY += 1
+                            tempX += 1
+                        }
+
+                        var tempYRev = yIndex
+
+                        var tempBackwards = ""
+                        for (xRev in xIndex + 2 downTo xIndex) {
+                            tempBackwards += input[tempYRev][xRev]
+                            tempYRev += 1
+                        }
+
+                        if (temp == "MAS" && tempBackwards == "MAS") {
+                            sum += 1
+                        }
+                    }
+                    sum
+                }
+            }
+        }
+
+        return sum
+    }
+
     fun solvePart2(): Int {
-        return -1
+        var localGrid = input
+
+        var sum = 0
+        for (rotation in 1..4) {
+            localGrid = rotateGrid(localGrid)
+
+            val wordSearchRes = findMas(localGrid)
+
+            sum += wordSearchRes
+        }
+
+        return sum
     }
 }

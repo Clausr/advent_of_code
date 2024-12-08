@@ -32,12 +32,12 @@ MXMXAXMASX""".trimIndent().split("\n")
     @Test
     fun testPartTwoExample1() {
         val day4 = Day04(exampleInput)
-        assertEquals(0, day4.solvePart2())
+        assertEquals(9, day4.solvePart2())
     }
 
     @Test
     fun partTwoRealInput() {
         val day4 = Day04(resourceAsList("aoc2024/day04.txt"))
-        assertEquals(0, day4.solvePart2())
+        assertEquals(1969, day4.solvePart2())
     }
 }
