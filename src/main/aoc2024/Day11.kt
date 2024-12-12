@@ -8,6 +8,7 @@ class Day11(input: List<String>) {
         repeat(blinks) {
             stones = blink(stones)
         }
+
         return stones.size
     }
 
@@ -35,7 +36,37 @@ class Day11(input: List<String>) {
         }
     }
 
-    fun solvePart2(): Int {
-        return -1
+    private val cache: MutableMap<Pair<Long, Int>, Long> = mutableMapOf()
+
+
+    fun solvePart2(): Long {
+        // Memoized version.
+        return stoneInput.sumOf { blinkMemoized(it, 75) }
+    }
+
+
+    private fun blinkMemoized(
+        stone: Long,
+        blinks: Int,
+        key: Pair<Long, Int> = stone to blinks,
+    ): Long = when {
+        blinks == 0 -> 1
+        key in cache -> cache.getValue(key)
+
+        else -> {
+            val result = when {
+                stone == 0L -> blinkMemoized(1, blinks - 1)
+                stone.toString().length % 2 == 0 -> {
+                    val len = stone.toString().length
+                    val (first, second) = stone.toString().chunked(len / 2)
+
+                    blinkMemoized(first.toLong(), blinks - 1) + blinkMemoized(second.toLong(), blinks - 1)
+                }
+
+                else -> blinkMemoized(stone * 2024, blinks - 1)
+            }
+            cache[key] = result
+            result
+        }
     }
 }
