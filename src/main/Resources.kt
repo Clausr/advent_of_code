@@ -7,7 +7,6 @@ internal object Resources
  * separated with the given delimiter.
  */
 fun resourceAsString(fileName: String): String {
-//    return File(fileName)
     return File(Resources.javaClass.classLoader.getResource(fileName)!!.toURI())
         .readText()
 }
@@ -17,7 +16,6 @@ fun resourceAsString(fileName: String): String {
  * Note: the last trailing blank line is ignored.
  */
 fun resourceAsList(fileName: String): List<String> =
-//    File(fileName)
     File(Resources.javaClass.classLoader.getResource(fileName)!!.toURI())
         .readLines()
 

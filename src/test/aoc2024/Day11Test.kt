@@ -22,12 +22,12 @@ class Day11Test {
     @Test
     fun testPartTwoExample1() {
         val day11 = Day11(exampleInput)
-        assertEquals(0, day11.solvePart2())
+        assertEquals(65601038650482, day11.solvePart2())
     }
 
     @Test
     fun partTwoRealInput() {
         val day11 = Day11(resourceAsList("aoc2024/day11.txt"))
-        assertEquals(0, day11.solvePart2())
+        assertEquals(224869647102559, day11.solvePart2())
     }
 }

@@ -36,11 +36,12 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
 
-    testImplementation(platform("org.junit:junit-bom:5.13.4"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-
     implementation("com.github.kittinunf.fuel:fuel:2.3.1") // For downloading input file
     implementation("com.github.kittinunf.result:result:5.6.0") // Needed for Fuel
+
+    testImplementation(platform("org.junit:junit-bom:5.13.4"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation(kotlin("test"))
 }
 
 tasks.test {
@@ -49,11 +50,6 @@ tasks.test {
         events("passed", "skipped", "failed")
     }
 }
-
-// config JVM target to 1.8 for kotlin compilation tasks
-//tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-//    kotlinOptions.jvmTarget = JavaVersion.VERSION_19.majorVersion
-//}
 
 // https://discuss.gradle.org/t/gradle-7-fail-for-duplicates-in-copy-specs-has-no-duplicates-in-project/39834/9
 project.tasks.named("processTestResources", Copy::class.java) {
