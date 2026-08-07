@@ -39,7 +39,7 @@ dependencies {
     implementation("com.github.kittinunf.fuel:fuel:2.3.1") // For downloading input file
     implementation("com.github.kittinunf.result:result:5.6.0") // Needed for Fuel
 
-    testImplementation(platform("org.junit:junit-bom:5.13.4"))
+    testImplementation(platform("org.junit:junit-bom:6.1.3"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation(kotlin("test"))
 }
